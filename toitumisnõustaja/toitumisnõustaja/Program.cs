@@ -65,53 +65,6 @@ namespace toitumisnõustaja
             }
             return user_id;
 
-
-            //Console.WriteLine(kasutajanimi2);
-            //if (kasutajanimi2 == kasutajanimi)
-            //{
-            //    if (kasutajad[user_id].parool == parool)
-            //    {
-
-            //        Console.WriteLine("Sisselogimine õnnestus!");
-            //        return user_id;
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("VALE PAROOL");
-            //        return -1;
-            //    }
-
-            //}
-
-
-            //for (int user_id = 0; user_id < kasutajad.Count; user_id ++)
-            //{
-            //    Console.WriteLine("peale fori");
-            //    if (kasutajad[user_id].kasutajanimi == kasutajanimi)
-            //    {
-            //        if (kasutajad[user_id].parool == parool)
-            //        {
-
-            //            Console.WriteLine("Sisselogimine õnnestus!");
-            //            return user_id;
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine("VALE PAROOL");
-            //            return -1;
-            //        }
-
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Sellist kasutajat ei leitud");
-            //        return -1;
-            //    }
-
-            //}
-            //    return 1;
-
-
         }
         public static void lookasutaja(List<kasutaja> kasutajad)
         {
