@@ -14,6 +14,8 @@ namespace toitumisnõustaja
         public int kaal;
         public int pikkus;
         public int vanus;
+        public string aste;
+        public string sugu;
 
     }
 }

@@ -13,7 +13,7 @@ namespace toitumisnõustaja
         {
             // listi nimi kasutajad, milles nurkade vahel oleva klassi sisu
             List<kasutaja> kasutajad = new List<kasutaja>();
-            Console.WriteLine("Teretulemast!\nValige soovoitud toiming:\nLOGI SISSE\nLOO KASUTAJA\n");
+            Console.WriteLine("Tere!\nValige soovoitud toiming:\nLOGI SISSE\nLOO KASUTAJA\n");
             string toiming = Console.ReadLine();
             if (toiming == "LOO KASUTAJA")
             {
@@ -22,6 +22,8 @@ namespace toitumisnõustaja
             if (toiming == "LOGI SISSE" )
             {
                 int user_id = Login(kasutajad);
+                teretulemast(user_id);
+                kaloriarvutaja(user_id);
 
 
             }
@@ -50,8 +52,9 @@ namespace toitumisnõustaja
                 {
                     if (parool2 == parool)
                     {
-                        Console.WriteLine("Sisselogimine õnnestus!");
+                        Console.WriteLine("Tere, " + kasutajanimi + " ! Sisselogimine õnnestus!");
                         return user_id;
+
                     }
                     else
                     {
@@ -84,7 +87,7 @@ namespace toitumisnõustaja
             //PIKKUS
             Console.WriteLine("Sisestage oma pikkus");
             string stringpikkus = Console.ReadLine();
-            int pikkus = Int32.Parse(stringkaal);
+            int pikkus = Int32.Parse(stringpikkus);
 
             // VANUS
             Console.WriteLine("Sisestage enda sünniaasta - YYYY");
@@ -95,6 +98,14 @@ namespace toitumisnõustaja
             string currentYear = DateTime.Now.Year.ToString();
             int vanus = (Int32.Parse(currentYear + currentMonth) - Int32.Parse(aasta + kuu)) / 100;
 
+            //Trenni aste
+            Console.WriteLine("Valige oma aste\naste 1 - vähe/mitte üldse trenni\naste 2 - kerge trenn (1-3x nädalas)\naste 3 - mõõdukas trenn (3-5x nädalas)\naste 4 - intensiivne trenn 6-7x nädalas\naste 5 - väga intensiivne trenn(2x päevas, väga rasked treeningud)");
+            string aste = Console.ReadLine();
+
+            //SUGU
+            Console.WriteLine("Sisestage sugu - M/N");
+            string sugu = Console.ReadLine();            
+
 
             kasutaja uus_kasutaja = new kasutaja();
             uus_kasutaja.kasutajanimi = kasutajanimi;
@@ -102,22 +113,106 @@ namespace toitumisnõustaja
             uus_kasutaja.vanus = vanus;
             uus_kasutaja.pikkus = pikkus;
             uus_kasutaja.kaal = kaal;
+            uus_kasutaja.aste = aste;
+            uus_kasutaja.sugu = sugu;
 
             kasutajad.Add(uus_kasutaja);
-            File.AppendAllText("../../andmed.txt", kasutajanimi + ":" + parool + ":" + kaal + ":" + pikkus + ":" + vanus +  ";\n");
-            string[] s;
-            string kasutajanimi2, parool2;
-            string[] lines = File.ReadAllLines("../../andmed.txt");
-            foreach(var item in lines)
-            {
-                s = item.Split(':');
-                kasutajanimi2 = s[0];
-                parool2 = s[1];
+            File.AppendAllText("../../andmed.txt", kasutajanimi + ":" + parool + ":" + kaal + ":" + pikkus + ":" + vanus + ":" + aste + ":" + sugu + ";"  + Environment.NewLine);
+            Console.WriteLine("Teretulemast, " + kasutajanimi);
 
-                Console.WriteLine("Teretulemast, " + kasutajanimi);
+
+        }
+        public static void kaloriarvutaja(int user_id)
+        {
+            double intaste = 0;
+            string[] s;
+            string aste = "";
+            string kaal = "";
+            string pikkus = "";
+            string vanus = "";
+            string sugu = "";
+            string[] lines = File.ReadAllLines("../../andmed.txt");
+            int counter = 0;
+
+            foreach (var item in lines)
+            {
+                if (user_id == counter)
+                {
+                    s = item.Split(':');
+                    kaal = s[2];
+                    pikkus = s[3];
+                    vanus = s[4];
+                    aste = s[5];
+                    sugu = s[6];
+                }
+                else
+                {
+                    counter++;
+                }
+
+            }
+            int intkaal = Int32.Parse(kaal);
+            int intpikkus = Int32.Parse(pikkus);
+            int intvanus = Int32.Parse(vanus);
+
+            if (aste == "aste 1")
+            {
+                intaste = 1.2;
+            }
+            else if (aste == "aste 2")
+            {
+                intaste = 1.375;
+            }
+            else if (aste == "aste 3")
+            {
+                intaste = 1.55;
+            }
+            else if (aste == "aste 4")
+            {
+                intaste = 1.725;
+            }
+            else if (aste == "aste 5")
+            {
+                intaste = 1.9;
+            }
+            else
+            {
+                Console.WriteLine("yop, siin elses midagi läks nihu");
             }
 
-           
+
+            if (sugu == "N")
+            {
+                double naisevalem = (655.1 + (9.563 * intkaal) + (1.850 * intpikkus) - (4.676 * intvanus)) * intaste;
+                Console.WriteLine("Sinu päevane kalorivajadus on: " + naisevalem);
+            }
+            else
+            {
+                double mehevalem = (66.5 + (13.75 * intkaal) + (5.003 * intpikkus) - (6.775 * intvanus)) * intaste;
+                Console.WriteLine("Sinu päevane kalorivajadus on: " + mehevalem);
+
+            }
+
         }
+        public static void teretulemast(int user_id)
+        {
+
+            //Console.WriteLine("Teie päevane soovituslik kalorikogus on :");
+        }
+        //        public static void eelistused()
+        //        {
+        //            Console.WriteLine("eelistus\nei ole eelistusi\ntaimetoitlane\nkalatoiduline\nmuu");
+        //            string eelistus = Console.ReadLine();
+
+        //            if (eelistus == "ei ole eelistusi")
+        //            {
+        //                try
+        //                {
+
+        //                }
+        //                catch { }
+
+        //            }
+        //        }
     }
 }

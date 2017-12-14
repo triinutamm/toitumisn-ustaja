@@ -1,3 +1,2 @@
-triinu:tamm:62:62:22;
-triinuu:tamm:10:10:22;
-tr:ta:10:10:22;
+triinu:1234:52:160:22:aste 2:N;
+trii:1234:52:160:22:aste 2:N;
