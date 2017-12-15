@@ -32,6 +32,10 @@ namespace toitumisnõustaja
                         {
                             menüü(user_id, toidukord);
                         }
+                        else
+                        {
+                            Console.WriteLine("Midagi läks valesti. Proovi uuesti!");
+                        }
                     }
                 }
                 else if (toiming == "LOGI SISSE")
@@ -60,40 +64,46 @@ namespace toitumisnõustaja
 
         public static int Login(List<kasutaja> kasutajad)
         {
-            Console.WriteLine("Sisestage kasutajanimi");
-            string kasutajanimi = Console.ReadLine();
-            Console.WriteLine("Sisestage parool");
-            string parool = Console.ReadLine();
-
-            string[] s;
-            string kasutajanimi2, parool2;
-            int user_id = 0;
-            string[] lines = File.ReadAllLines("../../andmed.txt");
-            foreach (var item in lines)
+            while (true)
             {
-                s = item.Split(':');
-                kasutajanimi2 = s[0];
-                parool2 = s[1];
-                
-                if (kasutajanimi2 == kasutajanimi)
+                Console.WriteLine("Sisestage kasutajanimi");
+                string kasutajanimi = Console.ReadLine();
+                Console.WriteLine("Sisestage parool");
+                string parool = Console.ReadLine();
+
+                string[] s;
+                string kasutajanimi2, parool2;
+                int user_id = 0;
+                string[] lines = File.ReadAllLines("../../andmed.txt");
+                foreach (var item in lines)
                 {
-                    if (parool2 == parool)
-                    {
-                        Console.WriteLine("Tere, " + kasutajanimi + " ! Sisselogimine õnnestus!");
-                        return user_id;
+                    s = item.Split(':');
+                    kasutajanimi2 = s[0];
+                    parool2 = s[1];
 
-                    }
-                    else
+                    if (kasutajanimi2 == kasutajanimi)
                     {
-                        Console.WriteLine("Vale parool!");
+                        if (parool2 == parool)
+                        {
+                            Console.WriteLine("Tere, " + kasutajanimi + " ! Sisselogimine õnnestus!");
+                            return user_id;
 
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vale parool!");
+
+                        }
                     }
+                    user_id++;
+
                 }
-                user_id++;
 
 
+
+
+                return user_id;
             }
-            return user_id;
 
         }
         public static void lookasutaja(List<kasutaja> kasutajad)

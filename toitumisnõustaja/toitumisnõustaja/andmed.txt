@@ -3,3 +3,4 @@ trii:1234:52:160:22:aste 2:N;
 triinuuu:1234:52:160:22:aste 2:N:omnivoor;
 1234:1234:52:160:22:aste 2:N:omnivoor:
 1111:1111:11:11:906:aste 1:N:omnivoor:
+vasja:vasja1:55:172:17:aste 3:N:omnivoor:
