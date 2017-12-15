@@ -13,30 +13,50 @@ namespace toitumisnõustaja
         {
             // listi nimi kasutajad, milles nurkade vahel oleva klassi sisu
             List<kasutaja> kasutajad = new List<kasutaja>();
-            Console.WriteLine("Tere!\nValige soovoitud toiming:\nLOGI SISSE\nLOO KASUTAJA\n");
-            string toiming = Console.ReadLine();
-            if (toiming == "LOO KASUTAJA")
+
+            //SISSELOGIMINE
+            while(true)
             {
-                lookasutaja(kasutajad);
-            }
-            if (toiming == "LOGI SISSE" )
-            {
-                int user_id = Login(kasutajad);
-                
-                kaloriarvutaja(user_id);
-                Console.WriteLine("Milliseks toidukorraks ideid soovid?\n HOMMIKUSÖÖK\nLÕUNASÖÖK\nÕHTUSÖÖK\nVAHEPALA");
-                string toidukord = Console.ReadLine();
-                if (toidukord == "ÕHTUSÖÖK")
+                Console.WriteLine("Tere!\nValige soovoitud toiming:\nLOGI SISSE\nLOO KASUTAJA\n");
+                string toiming = Console.ReadLine();
+                if (toiming == "LOO KASUTAJA")
                 {
-                    menüü(user_id, toidukord);
+                    lookasutaja(kasutajad);
+                    int user_id = Login(kasutajad);
+                    kaloriarvutaja(user_id);
+                    while (true)
+                    {
+                        Console.WriteLine("Milliseks toidukorraks ideid soovid?\n HOMMIKUSÖÖK\nLÕUNASÖÖK\nÕHTUSÖÖK\nVAHEPALA");
+                        string toidukord = Console.ReadLine();
+                        if (toidukord == "ÕHTUSÖÖK")
+                        {
+                            menüü(user_id, toidukord);
+                        }
+                    }
                 }
-                
-
+                else if (toiming == "LOGI SISSE")
+                {
+                    int user_id = Login(kasutajad);
+                    kaloriarvutaja(user_id);
+                    while (true)
+                    {
+                        Console.WriteLine("Milliseks toidukorraks ideid soovid?\n HOMMIKUSÖÖK\nLÕUNASÖÖK\nÕHTUSÖÖK\nVAHEPALA");
+                        string toidukord = Console.ReadLine();
+                        if (toidukord == "ÕHTUSÖÖK")
+                        {
+                            menüü(user_id, toidukord);
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Sisestasid midagi valesti. Proovi uuesti!");
+                   
+                }
 
             }
-
-
         }
+            
 
         public static int Login(List<kasutaja> kasutajad)
         {
@@ -231,7 +251,7 @@ namespace toitumisnõustaja
             {
                 if (toidukord == "ÕHTUSÖÖK")
                 {
-                    Console.WriteLine("ÕHTUSÖÖGI RETSEPTI KUVAMISEKS VAJUTAGE ENTER\nTAGASI MENÜÜSSE LIIKUMISEKS VAJUTAGE SUVALIST KLAHVI");
+                    Console.WriteLine("ÕHTUSÖÖGI RETSEPTI KUVAMISEKS VAJUTAGE ENTER\nTAGASI MENÜÜSSE LIIKUMISEKS VAJUTAGE ESC");
                     cki = Console.ReadKey();
                     for (int i = 0; i < 5; i++)
                     {
@@ -259,6 +279,7 @@ namespace toitumisnõustaja
                 {
                     break;
                 }
+                break;
             }
         }
         //        public static void eelistused()
