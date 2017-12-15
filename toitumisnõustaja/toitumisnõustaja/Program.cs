@@ -22,8 +22,15 @@ namespace toitumisnõustaja
             if (toiming == "LOGI SISSE" )
             {
                 int user_id = Login(kasutajad);
-                teretulemast(user_id);
+                
                 kaloriarvutaja(user_id);
+                Console.WriteLine("Milliseks toidukorraks ideid soovid?\n HOMMIKUSÖÖK\nLÕUNASÖÖK\nÕHTUSÖÖK\nVAHEPALA");
+                string toidukord = Console.ReadLine();
+                if (toidukord == "ÕHTUSÖÖK")
+                {
+                    menüü(user_id, toidukord);
+                }
+                
 
 
             }
@@ -104,7 +111,11 @@ namespace toitumisnõustaja
 
             //SUGU
             Console.WriteLine("Sisestage sugu - M/N");
-            string sugu = Console.ReadLine();            
+            string sugu = Console.ReadLine();
+
+            //TOITUMISEELISTUSED
+            Console.WriteLine("Valige, milliseid retsepte teile kuvame - omnivoor/vegan");
+            string eelistused = Console.ReadLine();
 
 
             kasutaja uus_kasutaja = new kasutaja();
@@ -115,9 +126,10 @@ namespace toitumisnõustaja
             uus_kasutaja.kaal = kaal;
             uus_kasutaja.aste = aste;
             uus_kasutaja.sugu = sugu;
+            uus_kasutaja.eelistused = eelistused;
 
             kasutajad.Add(uus_kasutaja);
-            File.AppendAllText("../../andmed.txt", kasutajanimi + ":" + parool + ":" + kaal + ":" + pikkus + ":" + vanus + ":" + aste + ":" + sugu + ";"  + Environment.NewLine);
+            File.AppendAllText("../../andmed.txt", kasutajanimi + ":" + parool + ":" + kaal + ":" + pikkus + ":" + vanus + ":" + aste + ":" + sugu + ":" + eelistused + ":"  + Environment.NewLine);
             Console.WriteLine("Teretulemast, " + kasutajanimi);
 
 
@@ -194,10 +206,60 @@ namespace toitumisnõustaja
             }
 
         }
-        public static void teretulemast(int user_id)
+        public static void menüü(int user_id, string toidukord )
         {
+            string eelistused = "";
+            int counter = 0;
+            string[] s;
+            ConsoleKeyInfo cki;
+            string[] lines = File.ReadAllLines("../../andmed.txt");
+            foreach (var item in lines)
+            {
+                if (user_id == counter)
+                {
+                    s = item.Split(':');
+                    eelistused = s[7];
+                }
+                else
+                {
+                    counter++;
+                }
 
-            //Console.WriteLine("Teie päevane soovituslik kalorikogus on :");
+            }
+            Console.WriteLine(eelistused);
+            while (eelistused == "omnivoor")
+            {
+                if (toidukord == "ÕHTUSÖÖK")
+                {
+                    Console.WriteLine("ÕHTUSÖÖGI RETSEPTI KUVAMISEKS VAJUTAGE ENTER\nTAGASI MENÜÜSSE LIIKUMISEKS VAJUTAGE SUVALIST KLAHVI");
+                    cki = Console.ReadKey();
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (cki.Key == ConsoleKey.Enter)
+                        {
+                            string text = File.ReadAllText("../../" + toidukord + i + ".txt", Encoding.Default);
+                            Console.WriteLine(text);
+                            Console.WriteLine("JÄRGMISE RETSEPTI KUVAMISEKS VAJUTAGE ENTER\nTAGASI MENÜÜSSE SAAMISEKS VAJUTAGE ESC");
+                            cki = Console.ReadKey();
+                            if (cki.Key == ConsoleKey.Escape)
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+
+                    }
+                    
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
         //        public static void eelistused()
         //        {

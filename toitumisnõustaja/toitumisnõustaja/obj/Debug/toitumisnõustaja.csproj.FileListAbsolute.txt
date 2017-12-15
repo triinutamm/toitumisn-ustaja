@@ -11,3 +11,10 @@ C:\Users\opilane\Desktop\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\bi
 C:\Users\opilane\Desktop\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\obj\Debug\toitumisnõustaja.csprojResolveAssemblyReference.cache
 C:\Users\opilane\Desktop\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\obj\Debug\toitumisnõustaja.exe
 C:\Users\opilane\Desktop\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\obj\Debug\toitumisnõustaja.pdb
+C:\Users\Kasutaja\Desktop\github\toitumisnõustaja\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\obj\Debug\toitumisnõustaja.csprojResolveAssemblyReference.cache
+C:\Users\Kasutaja\Desktop\github\toitumisnõustaja\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\obj\Debug\toitumisnõustaja.csproj.CoreCompileInputs.cache
+C:\Users\Kasutaja\Desktop\github\toitumisnõustaja\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\obj\Debug\toitumisnõustaja.exe
+C:\Users\Kasutaja\Desktop\github\toitumisnõustaja\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\obj\Debug\toitumisnõustaja.pdb
+C:\Users\Kasutaja\Desktop\github\toitumisnõustaja\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\bin\Debug\toitumisnõustaja.exe.config
+C:\Users\Kasutaja\Desktop\github\toitumisnõustaja\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\bin\Debug\toitumisnõustaja.exe
+C:\Users\Kasutaja\Desktop\github\toitumisnõustaja\toitumisn-ustaja\toitumisnõustaja\toitumisnõustaja\bin\Debug\toitumisnõustaja.pdb

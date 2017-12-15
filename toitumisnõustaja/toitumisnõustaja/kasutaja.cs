@@ -16,6 +16,7 @@ namespace toitumisnõustaja
         public int vanus;
         public string aste;
         public string sugu;
+        public string eelistused;
 
     }
 }
